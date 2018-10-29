@@ -40,32 +40,35 @@ function Task(title, description, type){
 var toDoList = new ToDoList();
 
 function addToList(task){
-  $(".results").append("<li id='" + task.id + "'>" + task.title + "  <button id='button" + task.id + "'>Mark complete</button></li>");
-  $("#" + task.id).click(function(){
+  $(".results").append("<li id='" + task.id + "'>" + task.title + "  <button id='button" + task.id + "'> Complete</button><button id='details" + task.id + "'> Details</button></li>");
+  $("#details" + task.id).click(function(){
     $(".title").text(task.title);
     $(".description").text(task.description);
     $(".type").text(task.type);
-    $(".details").toggle();
+    $(".modal").show();
   });
+  $(".close").click(function(){
+    $(".modal").hide();
+  })
+
   $("#button" + task.id).click(function(){
     $(".completed-list").show();
     $("#" + task.id).remove();
+    $(".details").hide();
     $(".completedResults").append("<li id='" + task.id + "'>" + task.title + "  <button id='delete" + task.id + "'>Delete</button></li>");
     deleteFromPage(task);
   });
+
 }
 
 function deleteFromPage(task){
   $("#delete" + task.id).click(function(){
-    console.log("hi")
+
     $("#" + task.id).remove();
+
     toDoList.deleteId(task.id);
   });
 }
-
-
-
-
 
 $(document).ready(function(){
   $("#to-do").submit(function(event){
@@ -74,13 +77,22 @@ $(document).ready(function(){
     var description = $("input#description").val();
     var type = $("#type").val();
     var task = new Task(title, description, type);
-    toDoList.addTask(task);
-    console.log(toDoList);
-    addToList(task);
 
-    $()
+    $("input#title").removeClass("is-invalid");
+    $("input#description").removeClass("is-invalid");
 
-    $(".uncompleted-list").show();
+
+    if (!title || !description) {
+      if (!title) {
+        $("input#title").addClass("is-invalid");
+      } if (!description){
+        $("input#description").addClass("is-invalid");
+      }
+    } else {
+      $(".uncompleted-list").show();
+      toDoList.addTask(task);
+      addToList(task);
+    }
   });
 
 });

@@ -8,39 +8,72 @@
     <title>To-Do List</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Create a To-Do List</h1>
-      <form id="to-do">
-        <div class="form-group">
-          <label for="title">Enter a title for your task:</label>
-          <input type="text" id="title" class=form-control>
+    <div class="container" id="instructions">
+      <div class="row">
+        <div class="col-md-12">
+
+          <h1>Create a To-Do List</h1>
+          <form id="to-do">
+            <div class="form-group">
+              <label for="title">Enter a title for your task:</label>
+              <input type="text" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="description">Enter a description:</label>
+              <input type="text" id="description" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="type">What type of task</label>
+              <select class="form-control" id="type">
+                <option value="work">Work</option>
+                <option value="play">Play</option>
+              </select>
+            </div>
+            <button type="submit">Add</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="description">Enter a description:</label>
-          <input type="text" id="description" class=form-control>
         </div>
-        <div class="form-group">
-          <label for="type">What type of task</label>
-          <select class="form-control" id="type">
-            <option value="work">Work</option>
-            <option value="play">Play</option>
-          </select>
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="uncompleted-list paper" >
+            <h3>To-Do List</h3>
+            <ul class="results"></ul>
+          </div>
         </div>
-        <button type="submit">Add</button>
-      </form>
-      <div class="uncompleted-list">
-        <h3>To-Do List</h3>
-        <ul class="results"></ul>
-      </div>
-      <div class="details">
-        <p>Title: <span class="title"></span></p>
-        <p>Description: <span class="description"></span></p>
-        <p>Type: <span class="type"></span></p>
-      </div>
-      <div class="completed-list">
-        <h3>Completed List</h3>
-        <ul class="completedResults">
-        </ul>
+        <div class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><span class="title"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Description: <span class="description"></span></p>
+                <p>Type: <span class="type"></span></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-4">
+
+          <div class="details">
+            <h3><span class="title"></span></h3>
+            <p>Description: <span class="description"></span></p>
+            <p>Type: <span class="type"></span></p>
+          </div>
+        </div> -->
+        <div class="col-md-6">
+
+          <div class="completed-list paper">
+            <h3>Completed List</h3>
+            <ul class="completedResults">
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </body>
