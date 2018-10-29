@@ -1,4 +1,4 @@
-//--- Business Logic for DestinationTracker
+//--- Business Logic for To Do List
 function ToDoList() {
   this.tasks = [];
   this.currentId = 0
@@ -14,7 +14,20 @@ ToDoList.prototype.assignId = function() {
   return this.currentId;
 }
 
-// Business Logic for Destination
+ToDoList.prototype.deleteId = function(id){
+  for (var i = 0; i < this.tasks.length; i++){
+    if(this.tasks[i]){
+      if(this.tasks[i].id === id){
+        delete this.tasks[i];
+        return true;
+
+      }
+    }
+  };
+  return false;
+}
+
+// Business Logic for Tasks
 function Task(title, description, type){
   this.title = title,
   this.description = description,
@@ -23,9 +36,12 @@ function Task(title, description, type){
 
 
 // --- User Interface Logic
+
+var toDoList = new ToDoList();
+
 function addToList(task){
-  $(".results").append("<li id='" + task.id + "'>" + task.title + " <button id='button" + task.id + "'>Mark complete</button></li>");
-  $("#" + task.id).click(function(event){
+  $(".results").append("<li id='" + task.id + "'>" + task.title + "  <button id='button" + task.id + "'>Mark complete</button></li>");
+  $("#" + task.id).click(function(){
     $(".title").text(task.title);
     $(".description").text(task.description);
     $(".type").text(task.type);
@@ -34,14 +50,22 @@ function addToList(task){
   $("#button" + task.id).click(function(){
     $(".completed-list").show();
     $("#" + task.id).remove();
-    $(".completedResults").append("<li id='" + task.id + "'>" + task.title + " <button id='delete" + task.id + "'>Delete</button></li>");
+    $(".completedResults").append("<li id='" + task.id + "'>" + task.title + "  <button id='delete" + task.id + "'>Delete</button></li>");
+    deleteFromPage(task);
+  });
+}
+
+function deleteFromPage(task){
+  $("#delete" + task.id).click(function(){
+    console.log("hi")
+    $("#" + task.id).remove();
+    toDoList.deleteId(task.id);
   });
 }
 
 
 
 
-var toDoList = new ToDoList();
 
 $(document).ready(function(){
   $("#to-do").submit(function(event){
