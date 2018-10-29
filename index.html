@@ -5,11 +5,43 @@
     <link rel="stylesheet" href="css/styles.css">
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
-    <title>Destination Tracker</title>
+    <title>To-Do List</title>
   </head>
   <body>
     <div class="container">
-      <h1 id="destinations">Destinations</h1>
+      <h1>Create a To-Do List</h1>
+      <form id="to-do">
+        <div class="form-group">
+          <label for="title">Enter a title for your task:</label>
+          <input type="text" id="title" class=form-control>
+        </div>
+        <div class="form-group">
+          <label for="description">Enter a description:</label>
+          <input type="text" id="description" class=form-control>
+        </div>
+        <div class="form-group">
+          <label for="type">What type of task</label>
+          <select class="form-control" id="type">
+            <option value="work">Work</option>
+            <option value="play">Play</option>
+          </select>
+        </div>
+        <button type="submit">Add</button>
+      </form>
+      <div class="uncompleted-list">
+        <h3>To-Do List</h3>
+        <ul class="results"></ul>
+      </div>
+      <div class="details">
+        <p>Title: <span class="title"></span></p>
+        <p>Description: <span class="description"></span></p>
+        <p>Type: <span class="type"></span></p>
+      </div>
+      <div class="completed-list">
+        <h3>Completed List</h3>
+        <ul class="completedResults">
+        </ul>
+      </div>
     </div>
   </body>
 </html>
